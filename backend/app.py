@@ -5,10 +5,15 @@ from models import db
 from routes import auth_bp, image_bp
 from utils import wait_for_db
 from config import Config
+from flask_migrate import Migrate
+
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
 CORS(app, supports_credentials=True)
+migrate = Migrate(app, db)
+
 
 
 db.init_app(app)

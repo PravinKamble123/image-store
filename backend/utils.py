@@ -119,7 +119,7 @@ def wait_for_db():
     retries = 5
     while retries:
         try:
-            conn = psycopg2.connect("dbname='img_store' user='myuser' password='mypass' host='host.internals' port='5432'")
+            conn = psycopg2.connect(dbname='img_store', user='myuser', password='mypass', host='host.internals', port=5432)
             print("Connected successfully!")
             conn.close()
             return

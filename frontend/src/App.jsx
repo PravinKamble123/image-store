@@ -54,7 +54,7 @@ function App() {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<AuthForm isLogin={true} />} />
           <Route path="/register" element={<AuthForm isLogin={false} />} />
-          <Route path="/tasks" element={<TaskList />} />
+          <Route path="/dashboard" element={<TaskList />} />
           <Route path="/create-task" element={<TaskForm />} />
         </Routes>
       </div>
