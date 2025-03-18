@@ -21,7 +21,7 @@ export default function AuthForm({ isLogin: initialLoginState }) {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (user && user.is_authenticated) {
-      navigate('/tasks');
+      navigate('/dashboard');
     }
   }, [navigate]);
 
@@ -44,7 +44,7 @@ export default function AuthForm({ isLogin: initialLoginState }) {
           is_authenticated: true ? data.access_token : false,
         })
       );
-      navigate('/tasks');
+      navigate('/dashboard');
     } catch (error) {
       setErrorMessage(error.response?.data?.message || 'Authentication failed');
     }

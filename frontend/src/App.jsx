@@ -1,19 +1,17 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import AuthForm from './component/AuthForm';
-import TaskList from './component/TaskList';
-import TaskForm from './component/TaskForm';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-
+import ViewImage from './component/ViewImage';
+import UploadImage from './component/UploadImageModal';
+import Dashboard from './component/Dashboard';
+import AuthForm from './component/AuthForm';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check for authentication on app load
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user?.is_authenticated) {
+    if (user?.is_authenticated) {
       setIsAuthenticated(true);
     }
   }, []);
@@ -46,7 +44,6 @@ function App() {
     );
   }, []);
 
-
   return (
     <Router>
       <div className="container mx-auto p-4">
@@ -54,8 +51,9 @@ function App() {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<AuthForm isLogin={true} />} />
           <Route path="/register" element={<AuthForm isLogin={false} />} />
-          <Route path="/dashboard" element={<TaskList />} />
-          <Route path="/create-task" element={<TaskForm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload" element={<UploadImage />} />
+          <Route path="/view/:id" element={<ViewImage />} />
         </Routes>
       </div>
     </Router>

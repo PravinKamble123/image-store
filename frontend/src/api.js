@@ -80,3 +80,32 @@ export const deleteTask = async (taskId) => {
   const response = await authenticatedApi.delete(`/tasks/${taskId}`);
   return response.data;
 };
+
+export const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await authenticatedApi.post('/images/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+};
+
+// Get all images
+export const getImages = async () => {
+  const response = await authenticatedApi.get('/images/images');
+  return response.data.images;
+};
+
+export const viewImage = async (image_id) => {
+  try {
+    const response = await authenticatedApi.get(`/images/view/${image_id}`, {
+      responseType: "blob", 
+    });
+
+    return URL.createObjectURL(response.data);
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    return null; 
+  }
+};
